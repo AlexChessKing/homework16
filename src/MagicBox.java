@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class MagicBox<T> {
-    T[] items;
+    private final T[] items;
 
     public MagicBox (int size) {
         items = (T[]) new Object[size];
@@ -17,13 +17,14 @@ public class MagicBox<T> {
         return false;
     }
 
+    Random random = new Random();
+
     public T pick() {
         for (int i = 0; i < items.length; i++) {
             if(items[i] == null) {
                 throw new RuntimeException("Коробка не полна. Пустых ячеек для заполнения: " + (items.length - i));
             }
         }
-        Random random = new Random();
         int randomInt = random.nextInt(items.length);
         return items[randomInt];
     }
